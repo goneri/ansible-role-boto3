@@ -1,0 +1,36 @@
+# Copyright 2015-2020 Red Hat, Inc.
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+# http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS, WITHOUT
+# WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the
+# License for the specific language governing permissions and limitations
+# under the License.
+---
+# tasks/main.yaml
+boto3_task_manager:
+  - install
+  - config
+
+# tasks/config.yaml
+boto3_user_name: root
+boto3_user_group: root
+boto3_user_home: /root
+
+boto3_file_credentials_dest: "{{ boto3_user_home }}/.aws/credentials"
+boto3_file_credentials_group: "{{ boto3_user_group }}"
+boto3_file_credentials_mode: 0640
+boto3_file_credentials_owner: "{{ boto3_user_name }}"
+boto3_file_credentials_src: root/.aws/credentials.j2
+
+boto3_git_dest: "{{ ansible_user_dir }}/src/git.openstack.org/openstack/aws"
+boto3_git_uri: https://git.openstack.org/openstack/aws
+boto3_git_version: master
+
+boto3_pip_name: boto3
+# boto3_pip_virtualenv: /root/venv
